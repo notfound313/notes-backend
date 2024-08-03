@@ -2,7 +2,7 @@ const { nanoid } = require('nanoid');
 
 class NotesService {
   constructor() {
-    this._notes = [];  
+    this._notes = [];
   }
 
   addNote({ title, body, tags }) {
