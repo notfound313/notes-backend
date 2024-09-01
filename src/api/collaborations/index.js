@@ -12,7 +12,7 @@ module.exports = {
     const collaborationsHandler = new CollaborationsHandler(
       collaborationsService,
       notesService,
-      validator
+      validator,
     );
     server.route(routes(collaborationsHandler));
   },
