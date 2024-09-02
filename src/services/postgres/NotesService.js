@@ -35,6 +35,11 @@ class NotesService {
   }
 
   async getNotes(owner) {
+    try {
+      // mendapatkan catatan dari cache
+      const result = await this._cacheService.get(`notes:${owner}`);
+      return JSON.parse(result);
+    } catch (error) {
     const query = {
       text: `SELECT notes.* FROM notes
     LEFT JOIN collaborations ON collaborations.note_id = notes.id
@@ -47,6 +52,7 @@ class NotesService {
     await this._cacheService.set(`notes:${owner}`, JSON.stringify(mappedResult));
     return mappedResult;
   }
+}
 
   async getNoteById(id) {
     const query = {
